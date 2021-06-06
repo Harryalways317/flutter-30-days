@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.green[400],
         body: Container(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 280, horizontal: 80),
+            padding: const EdgeInsets.symmetric(vertical: 250, horizontal: 50),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               //crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,15 +27,31 @@ class MyApp extends StatelessWidget {
                   foregroundColor: Colors.blue,
                   radius: 100,
                 ),
-                Text(
-                  "Harish Vadaparty",
-                  style: TextStyle(fontSize: 30, fontFamily: "Roboto"),
+                SizedBox(
+                  height: 10,
                 ),
-                Text(
-                  "Flutter Developer",
-                  style: TextStyle(fontSize: 20, fontFamily: "Chelesa"),
+                Center(
+                  child: Text(
+                    "Harish Vadaparty",
+                    style: TextStyle(fontSize: 30, fontFamily: "Roboto"),
+                  ),
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Center(
+                  child: Text(
+                    "Flutter Developer",
+                    style: TextStyle(fontSize: 20, fontFamily: "Chelesa"),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 cardWidget("+91 6301786793"),
+                SizedBox(
+                  height: 10,
+                ),
                 cardWidget("harishvadaparty@gmail.com"),
               ],
             ),
@@ -50,14 +66,17 @@ class MyApp extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         child: Container(
-          width: 250,
+          width: 650,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Icon(Icons.phone),
+              SizedBox(
+                width: 10,
+              ),
               Text(
                 message,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
             ],
           ),
