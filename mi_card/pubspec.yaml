@@ -64,11 +64,11 @@ flutter:
   fonts:
     - family: Roboto
       fonts:
-        - asset: Roboto-Regular.ttf
+        - asset: fonts/Roboto-Regular.ttf
 
     - family: Chelesa
       fonts:
-        - asset: ChelseaMarket-Regular.ttf
+        - asset: fonts/ChelseaMarket-Regular.ttf
 
 
 
