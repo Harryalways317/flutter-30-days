@@ -19,22 +19,21 @@ class MyApp extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 280, horizontal: 80),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 200,
-                  child: Image(
-                    image: AssetImage("images/harry.png"),
-                  ),
+                CircleAvatar(
+                  foregroundImage: AssetImage("images/harry.png"),
+                  foregroundColor: Colors.blue,
+                  radius: 100,
                 ),
                 Text(
                   "Harish Vadaparty",
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(fontSize: 30, fontFamily: "Roboto"),
                 ),
                 Text(
                   "Flutter Developer",
-                  style: TextStyle(fontSize: 15),
+                  style: TextStyle(fontSize: 20, fontFamily: "Chelesa"),
                 ),
                 cardWidget("+91 6301786793"),
                 cardWidget("harishvadaparty@gmail.com"),
