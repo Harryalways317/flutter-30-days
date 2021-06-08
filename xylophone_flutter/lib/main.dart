@@ -7,6 +7,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final player = AudioCache();
+  void playSong(int number) {
+    player.play("note$number.wav");
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class MyApp extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                player.play("note1.wav");
+                playSong(1);
               },
               child: Container(
                 color: Colors.purple,
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                player.play("note2.wav");
+                playSong(2);
               },
               child: Container(
                 color: Colors.indigo,
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                player.play("note3.wav");
+                playSong(3);
               },
               child: Container(
                 color: Colors.blue,
@@ -50,7 +54,7 @@ class MyApp extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                player.play("note4.wav");
+                playSong(4);
               },
               child: Container(
                 color: Colors.green,
@@ -59,7 +63,7 @@ class MyApp extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                player.play("note5.wav");
+                playSong(5);
               },
               child: Container(
                 color: Colors.yellow,
@@ -68,7 +72,7 @@ class MyApp extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                player.play("note6.wav");
+                playSong(6);
               },
               child: Container(
                 color: Colors.orange,
@@ -77,7 +81,7 @@ class MyApp extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                player.play("note7.wav");
+                playSong(7);
               },
               child: Container(
                 color: Colors.red,
