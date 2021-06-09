@@ -1,14 +1,25 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   final player = AudioCache();
   void playSong(int number) {
     player.play("note$number.wav");
+  }
+
+  Expanded buildKey({required MaterialColor color, required int soundNumber}) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          playSong(soundNumber);
+        },
+        child: Container(
+          color: color,
+        ),
+      ),
+    );
   }
 
   // This widget is the root of your application.
@@ -23,71 +34,15 @@ class MyApp extends StatelessWidget {
           body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          //crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            GestureDetector(
-              onTap: () {
-                playSong(1);
-              },
-              child: Container(
-                color: Colors.purple,
-                height: 50,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                playSong(2);
-              },
-              child: Container(
-                color: Colors.indigo,
-                height: 50,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                playSong(3);
-              },
-              child: Container(
-                color: Colors.blue,
-                height: 50,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                playSong(4);
-              },
-              child: Container(
-                color: Colors.green,
-                height: 50,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                playSong(5);
-              },
-              child: Container(
-                color: Colors.yellow,
-                height: 50,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                playSong(6);
-              },
-              child: Container(
-                color: Colors.orange,
-                height: 50,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                playSong(7);
-              },
-              child: Container(
-                color: Colors.red,
-                height: 50,
-              ),
-            ),
+            buildKey(color: Colors.purple, soundNumber: 1),
+            buildKey(color: Colors.indigo, soundNumber: 2),
+            buildKey(color: Colors.blue, soundNumber: 3),
+            buildKey(color: Colors.green, soundNumber: 4),
+            buildKey(color: Colors.yellow, soundNumber: 5),
+            buildKey(color: Colors.orange, soundNumber: 6),
+            buildKey(color: Colors.red, soundNumber: 7),
           ],
         ),
       )),
