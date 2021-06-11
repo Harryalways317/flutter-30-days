@@ -70,7 +70,19 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                questionNumber += 1;
+
+                scoreKeeper.add(answersList[questionNumber] == true
+                    ? Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      )
+                    : Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ));
+                setState(() {
+                  questionNumber += 1;
+                });
               },
             ),
           ),
@@ -89,7 +101,21 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                questionNumber += 1;
+
+                scoreKeeper.add(
+                  answersList[questionNumber] == false
+                      ? Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        )
+                      : Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
+                );
+                setState(() {
+                  questionNumber += 1;
+                });
               },
             ),
           ),
