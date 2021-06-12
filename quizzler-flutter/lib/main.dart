@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/question.dart';
+import 'package:quizzler/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -25,14 +28,68 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  QuizBrain quizBrain = QuizBrain();
   List<Widget> scoreKeeper = [];
-  List<String> questionList = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
-  List<bool> answersList = [false, true, true];
-  int questionNumber = 0;
+  int scoreValue = 0;
+  // List<String> questionList = [
+  //   'You can lead a cow down stairs but not up stairs.',
+  //   'Approximately one quarter of human bones are in the feet.',
+  //   'A slug\'s blood is green.'
+  // ];
+  // List<bool> answersList = [false, true, true];
+  void showAlert() {
+    Alert(
+      context: context,
+      type: AlertType.success,
+      title: "Quiz Completed",
+      desc: "your score is $scoreValue / ${quizBrain.getQuestionNumber()} ",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Attempt Again",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+            setState(() {
+              quizBrain.reset();
+              scoreKeeper.clear();
+            });
+          },
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+        )
+      ],
+    ).show();
+  }
+
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer = quizBrain.getCorrectAnswer();
+    if (correctAnswer == userPickedAnswer) {
+      scoreValue++;
+    }
+    setState(() {
+      scoreKeeper.add(correctAnswer == userPickedAnswer
+          ? Icon(
+              Icons.check,
+              color: Colors.green,
+            )
+          : Icon(
+              Icons.close,
+              color: Colors.red,
+            ));
+
+      quizBrain.nextQuestion();
+    });
+  }
+
+  // List<Question> questionBank = [
+  //   Question('You can lead a cow down stairs but not up stairs.', false),
+  //   Question('Approximately one quarter of human bones are in the feet.', true),
+  //   Question('A slug\'s blood is green.', true),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,7 +102,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionList[questionNumber],
+                quizBrain.nextQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -70,19 +127,12 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-
-                scoreKeeper.add(answersList[questionNumber] == true
-                    ? Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      )
-                    : Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ));
-                setState(() {
-                  questionNumber += 1;
-                });
+                if (!quizBrain.isFinished()) {
+                  print(quizBrain.isFinished());
+                  checkAnswer(true);
+                } else {
+                  showAlert();
+                }
               },
             ),
           ),
@@ -101,21 +151,12 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-
-                scoreKeeper.add(
-                  answersList[questionNumber] == false
-                      ? Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        )
-                      : Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ),
-                );
-                setState(() {
-                  questionNumber += 1;
-                });
+                if (!quizBrain.isFinished()) {
+                  print(quizBrain.isFinished());
+                  checkAnswer(false);
+                } else {
+                  showAlert();
+                }
               },
             ),
           ),
