@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/question.dart';
 import 'package:quizzler/quiz_brain.dart';
+import 'package:quizzler/quiz_fetch_utility.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-void main() => runApp(Quizzler());
+void main() {
+  QuizUtility quizUtility = QuizUtility();
+  var questions = quizUtility.fetchQuestions();
+  print(questions);
+  runApp(Quizzler());
+}
 
 class Quizzler extends StatelessWidget {
   @override
